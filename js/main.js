@@ -1,9 +1,9 @@
-// Fungsi Utama: Mengendalikan Validation & Pengiraan Kos
+// Function
 function validateAndCalculate(event) {
-    // 1. Menghalang borang daripada submit/refresh secara automatik
+    // 1. Prevention
     event.preventDefault();
 
-    // 2. Clear kesemua mesej ralat terdahulu
+    // 2. Clear 
     document.getElementById('nameError').innerText = "";
     document.getElementById('emailError').innerText = "";
     document.getElementById('destError').innerText = "";
@@ -11,7 +11,7 @@ function validateAndCalculate(event) {
     document.getElementById('speedError').innerText = "";
     document.getElementById('termsError').innerText = "";
 
-    // 3. Ambil Nilai dari Borang melalui DOM
+    // 3. Ambil Nilai dari Borang melalui DO
     const name = document.getElementById('custName').value.trim();
     const email = document.getElementById('custEmail').value.trim();
     const destination = document.getElementById('destination').value;
@@ -57,7 +57,7 @@ function validateAndCalculate(event) {
         isValid = false;
     }
 
-    // Jika ada ralat pengesahan, hentikan pemprosesan
+   
     if (!isValid) {
         alert("Invalid input! Please check your form error messages.");
         resultDiv.classList.add("hidden");
@@ -72,7 +72,7 @@ function validateAndCalculate(event) {
     let weightCategory = "";
     let speedName = "";
 
-    // Kirakan Kos Destinasi
+    // Destination Cost
     if (destination === "city") {
         destCost = 50.00;
         destName = "City Area";
@@ -84,7 +84,7 @@ function validateAndCalculate(event) {
         destName = "Remote Haunted House";
     }
 
-    // Kirakan Kos Berat Berdasarkan Pilihan Dropdown
+    // Weight Cost
     if (ghostWeightValue === "5") {
         weightCost = 20.00;
         weightCategory = "Light Entity (1 - 5 kg)";
@@ -99,7 +99,7 @@ function validateAndCalculate(event) {
         weightCategory = "Ultra Heavy Entity (> 50 kg)";
     }
 
-    // Kirakan Kos Kelajuan
+    // Cost Speed
     if (speed === "express") {
         speedCost = 100.00;
         speedName = "Emergency Express (1-Hour)";
@@ -108,13 +108,13 @@ function validateAndCalculate(event) {
         speedName = "Standard Response (24 Hours)";
     }
 
-    // Pengiraan Jumlah Keseluruhan
+    // Total
     const totalCost = destCost + weightCost + speedCost;
 
-    // Alert Kejayaan
+    // Alert
     alert("Calculation complete! Scroll down to view the detailed summary.");
 
-    // 6. PAPARAN KEPUTUSAN DINAMIK PADA DOM (Gunakan CSS Classes)
+    // 6. RESULT
     resultDiv.classList.remove("hidden");
     resultDiv.innerHTML = `
         <h3>Estimation Result Summary</h3>
@@ -136,7 +136,7 @@ function validateAndCalculate(event) {
     return true;
 }
 
-// Fungsi Keselamatan untuk Menghalang XSS pada Paparan
+
 function escapeHTML(str) {
     return str.replace(/[&<>'"]/g, 
         tag => ({
@@ -149,7 +149,7 @@ function escapeHTML(str) {
     );
 }
 
-// Simulasi Teks Radar Status Dinamik
+// Simulation
 function updateRadarStatus() {
     const statusText = document.getElementById('radarStatus');
     if (!statusText) return;
@@ -168,5 +168,4 @@ function updateRadarStatus() {
     }, 4000);
 }
 
-// Jalankan radar apabila halaman dibuka
 document.addEventListener("DOMContentLoaded", updateRadarStatus);
